@@ -3,3 +3,7 @@ This is a project for creating an automated, DevOps type, workflow for Puppet an
 
 Tools used: Puppet, Jenkins, Jenkins Job Builder
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/devops-workflow/readme/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
