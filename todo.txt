@@ -1,0 +1,21 @@
+Future TODOs (no particular order):
+
+Support auto build jobs per branch https://github.com/entagen/jenkins-build-per-branch
+Build workflow for OS image creation with packer
+Architect other Puppet components and build their workflows (control repositories, hiera)
+Rewrite Vagrant setup. Should be a simple command to build the entire multi VM setup
+Write documentation for everything
+Setup metric views
+Build jobs to generate metrics
+Support maven builds
+Add static analysis for more languages
+Support files within the code repositories to modify/control job behavior
+    Look at support job definitions from within code repositories
+    Build anchor links from file in code repository. Define file format. - DONE
+    Modify job description. Support files
+        desc_header.txt
+        desc_footer.txt
+    All support files should live in their own directory. Possible names: jenkins, CI
+Create job to display existing Icons for use with anchor links and other plugins - DONE
+Extend Jenkins Job Builder for things that currently using raw XML to support
+Extend Jenkins DSL plugin to support dashboard view and metric plugins
