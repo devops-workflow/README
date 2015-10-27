@@ -1,5 +1,5 @@
-=Goals of Workflow Project
-
+Goals of Workflow Project
+===
 - 100% driven from version control
 - Framework designed to support 100% automation
 - Expandable framework that can support other workflows and types of code.
