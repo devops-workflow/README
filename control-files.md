@@ -1,4 +1,4 @@
-Tools are being built into the workflow to support reading control files for the code repository to modify the workflow or Jenkins UI.
+Tools are being built into the workflow to support reading control files from the code repository to modify the workflow or Jenkins UI.
 
 All control files reside under ci_data
 
@@ -17,5 +17,5 @@ All control files reside under ci_data
  * Directory for yaml files to interact directly with Jenkins Job Builder - Work in progress
 
 ### Sample Files
-* [testing-repo](https://github.com/devops-workflow/testing-repo) Contains sample file used to test these features
+* [testing-repo](https://github.com/devops-workflow/testing-repo) Contains sample files used to test these features
 
