@@ -72,5 +72,8 @@ if (codes.containsKey(code)) {
   category = code
 }
 return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+```
+**Example:**
+```
 
 ```

@@ -45,5 +45,8 @@ if (message == null || message.empty) {
 type = type.replaceAll(/%/, '_')
 
 return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+```
+**Example:**
+```
 
 ```
