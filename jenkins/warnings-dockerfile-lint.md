@@ -5,7 +5,7 @@ Custom parsers for the Warnings plugin can be added on the Jenkins global config
 This is a 2 part parser:
 - Parsing json output into line output
  - Format: Filename:Priority:Line Number:Category:Message
-- Parsing line output with plugin
+- Parsing line output with Warning plugin
 
 ---
 
@@ -15,7 +15,7 @@ This is a 2 part parser:
 
 **Trend report name:** dockerfile-lint
 
-**Regular Expression:** `^([^:]+):([^:]+):([^:]+):([^:]+):(.*)$`
+**Regular Expression:** `^"([^:]+):([^:]+):([^:]+):([^:]+):(.*)"$`
 
 **Mapping Script:**
 ```
@@ -45,7 +45,7 @@ return new Warning(fileName, Integer.parseInt(lineNumber), type, category, messa
 ```
 "Dockerfile:error:0:ARG:No ARGs are defined Reason=ARG statements are required for dynamic variables"
 "Dockerfile:error:0:LABEL:No LABELs are defined Reason=Labels are required.... Reference=https://docs.docker.com/reference/builder/#label"
-"Dockerfile:error:0:misc:Required LABEL name/key 'org.label-schema.build-date' is not defined Reference=http://label-schema.org/"
+"Dockerfile:error:0:misc:Required LABEL name/key 'org.label-schema.build-date' is not defined Reference=http://label-schema.org/""
 ```
 
 ---
