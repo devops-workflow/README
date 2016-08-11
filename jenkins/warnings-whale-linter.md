@@ -7,6 +7,7 @@ This is a 2 part parser:
  - Format: Priority;Line Number;Category;Message
 - Parsing line output with Warning plugin
 
+This is for whale-linter v0.0.4
 ---
 
 **Name:** Custom-whale-linter
@@ -64,13 +65,13 @@ while read -r line || [[ -n "$line" ]]; do
     continue
   fi
   # Check for priority change and get
-  if [[ $(expr "$line" : '[\[0-9m]*CRITICAL *:') -gt 0 ]]; then
+  if [[ $(echo $line | grep -E '\e[\[0-9m]*CRITICAL\s*:' | wc -l) -gt 0 ]]; then
     priority='CRITICAL'
     continue
-  elif [[ $(expr "$line" : '[\[0-9m]*WARNING *:') -gt 0 ]]; then
+  elif [[ $(echo "$line" | grep -E '\e[\[0-9m]*WARNING\s*:' | wc -l) -gt 0 ]]; then
     priority='WARNING'
     continue
-  elif [[ $(expr "$line" : '[\[0-9m]*ENHANCEMENT *:') -gt 0 ]]; then
+  elif [[ $(echo "$line" | grep -E '\e[\[0-9m]*ENHANCEMENT\s*:' | wc -l) -gt 0 ]]; then
     priority='ENHANCEMENT'
     continue
   fi
@@ -81,11 +82,17 @@ while read -r line || [[ -n "$line" ]]; do
   if [ -z "$lineNumber" ]; then
     continue
   fi
+  # if lineNumber is NOT a number, it is the category instead
+  if [[ $lineNumber =~ ^[0-9]+$ ]]; then
+    category=${line#*:}
+    category=${category%%:*}
+    category=$(echo $category | sed 's/^\s*\e*[\[0-9m]*//')
+  else
+    category=$(echo $lineNumber | sed 's/^\s*\e*[\[0-9m]*//')
+    lineNumber=0
+  fi
   msg=${line##*:}
-  msg=$(echo $msg | sed 's/^\s*[\[0-9m]*//')
-  category=${line#*:}
-  category=${category%%:*}
-  category=$(echo $category | sed 's/^\s*[\[0-9m]*//')
+  msg=$(echo $msg | sed 's/^\s*\e*[\[0-9m]*//')
   echo "${priority};${lineNumber};${category};${msg}"
 done < "$input"
 ```
