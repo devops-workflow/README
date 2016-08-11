@@ -65,13 +65,13 @@ while read -r line || [[ -n "$line" ]]; do
     continue
   fi
   # Check for priority change and get
-  if [[ $(echo $line | grep -E '\e[\[0-9m]*CRITICAL\s*:' | wc -l) -gt 0 ]]; then
+  if [[ $(echo $line | grep -E '[\[0-9m]*CRITICAL\s*:' | wc -l) -gt 0 ]]; then
     priority='CRITICAL'
     continue
-  elif [[ $(echo "$line" | grep -E '\e[\[0-9m]*WARNING\s*:' | wc -l) -gt 0 ]]; then
+  elif [[ $(echo "$line" | grep -E '[\[0-9m]*WARNING\s*:' | wc -l) -gt 0 ]]; then
     priority='WARNING'
     continue
-  elif [[ $(echo "$line" | grep -E '\e[\[0-9m]*ENHANCEMENT\s*:' | wc -l) -gt 0 ]]; then
+  elif [[ $(echo "$line" | grep -E '[\[0-9m]*ENHANCEMENT\s*:' | wc -l) -gt 0 ]]; then
     priority='ENHANCEMENT'
     continue
   fi
@@ -86,13 +86,13 @@ while read -r line || [[ -n "$line" ]]; do
   if [[ $lineNumber =~ ^[0-9]+$ ]]; then
     category=${line#*:}
     category=${category%%:*}
-    category=$(echo $category | sed 's/^\s*\e*[\[0-9m]*//')
+    category=$(echo $category | sed 's/^\s*.[\[0-9m]*//')
   else
-    category=$(echo $lineNumber | sed 's/^\s*\e*[\[0-9m]*//')
+    category=$(echo $lineNumber | sed 's/^\s*.[\[0-9m]*//')
     lineNumber=0
   fi
   msg=${line##*:}
-  msg=$(echo $msg | sed 's/^\s*\e*[\[0-9m]*//')
+  msg=$(echo $msg | sed 's/^\s*.[\[0-9m]*//')
   echo "${priority};${lineNumber};${category};${msg}"
 done < "$input"
 ```
